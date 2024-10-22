@@ -6,8 +6,8 @@ export function cn(...inputs) {
 }
 
 export const links = [
-  { href: "/dashboard", icon: "House", label: "Dashboard" },
-  { href: "/courses", icon: "Book", label: "Courses" },
+  { href: "/home", icon: "House", label: "Dashboard" },
+  { href: "/dictionary", icon: "Book", label: "Legal Dictionary" },
   { href: "/calendar", icon: "Calendar", label: "Calendar" },
   { href: "/messages", icon: "MessageSquare", label: "Messages" },
   { href: "/settings", icon: "Settings", label: "Settings" },
