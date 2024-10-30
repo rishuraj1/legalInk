@@ -15,8 +15,10 @@ const routes = [
 export default function NavBar() {
   return (
     <header className="flex justify-between items-center px-4 py-2">
-      <BrandLogo />
-      <nav className="flex gap-5 w-1/3">
+      <div className="w-1/3">
+        <BrandLogo />
+      </div>
+      <nav className="hidden md:flex gap-5 w-1/3">
         {routes?.map((route) => (
           <Link
             key={route?.href}

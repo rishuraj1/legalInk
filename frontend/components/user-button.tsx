@@ -32,6 +32,7 @@ export async function UserButton() {
         .map((name: string) => name[0])
         .join("")
     : ("G" as string);
+  console.log(user, "user");
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -40,15 +41,12 @@ export async function UserButton() {
       {!user ? (
         <DropdownMenuContent>
           <DropdownMenuLabel>
-            <Link href="/auth/signup">Sign Up</Link>
-          </DropdownMenuLabel>
-          <DropdownMenuLabel>
-            <Link href="/auth/login">Log In</Link>
+            <Link href="/auth">Log In/Sign Up</Link>
           </DropdownMenuLabel>
         </DropdownMenuContent>
       ) : (
         <DropdownMenuContent>
-          <DropdownMenuLabel>My Profile</DropdownMenuLabel>
+          <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
           <DropdownMenuLabel>
             <form
               action={async () => {

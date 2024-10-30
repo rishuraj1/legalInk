@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import Form from "next/form";
 import { useSearchParams } from "next/navigation";
 import SearchResetButton from "./search-reset-btn";
+import { Input } from "./ui/input";
 
 const SearchInput = () => {
   const searchParams = useSearchParams();
@@ -13,15 +14,15 @@ const SearchInput = () => {
     <Form
       action="/"
       scroll={false}
-      className="search-form flex gap-1 max-w-xl relative"
+      className="search-form flex gap-1 relative max-w-[300px]"
     >
-      <input
+      <Input
         type="search"
         name="query"
         id="query"
         placeholder="Search"
         defaultValue={query}
-        className="max-w-[200px] bg-[#F4F4F5] dark:bg-[#242535] dark:placeholder:text-[#A1A1AA] shadow-sm rounded-lg px-2 py-1 placeholder:text-[#3B3C4A] text-[#3B3C4A] dark:text-[#A1A1AA] focus:outline-none focus:ring-1 focus:ring-accent focus:ring-opacity-50"
+        className="max-w-[300px] bg-[#F4F4F5] dark:bg-[#242535] dark:placeholder:text-[#A1A1AA] shadow-sm rounded-lg px-2 py-1 placeholder:text-[#3B3C4A] text-[#3B3C4A] dark:text-[#A1A1AA] focus:outline-none focus:ring-1 focus:ring-accent focus:ring-opacity-50"
       />
       <div className="flex gap-1 items-center">
         {query && <SearchResetButton />}
