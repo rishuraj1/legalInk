@@ -20,6 +20,10 @@ const articleSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    content: {
+      type: String,
+      required: true,
+    },
     views: {
       type: Number,
       default: 0,
@@ -40,8 +44,8 @@ const articleSchema = new mongoose.Schema(
     ],
     status: {
       type: String,
-      default: "pending",
-      enum: ["draft", "published"],
+      default: "draft",
+      enum: ["draft", "pending", "published"],
     },
     approveStatus: {
       type: String,
