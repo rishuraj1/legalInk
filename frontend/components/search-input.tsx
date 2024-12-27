@@ -14,7 +14,7 @@ const SearchInput = () => {
     <Form
       action="/"
       scroll={false}
-      className="search-form flex gap-1 relative max-w-[300px]"
+      className="flex gap-1 relative max-w-[300px]"
     >
       <Input
         type="search"
@@ -22,7 +22,7 @@ const SearchInput = () => {
         id="query"
         placeholder="Search"
         defaultValue={query}
-        className="max-w-[300px] bg-[#F4F4F5] dark:bg-[#242535] dark:placeholder:text-[#A1A1AA] shadow-sm rounded-lg px-2 py-1 placeholder:text-[#3B3C4A] text-[#3B3C4A] dark:text-[#A1A1AA] focus:outline-none focus:ring-1 focus:ring-accent focus:ring-opacity-50"
+        className="lg:max-w-[300px] md:max-w-[200px] bg-[#F4F4F5] dark:bg-[#242535] dark:placeholder:text-[#A1A1AA] shadow-sm rounded-lg px-2 py-1 placeholder:text-[#3B3C4A] text-[#3B3C4A] dark:text-[#A1A1AA] focus:outline-none focus:ring-1 focus:ring-accent focus:ring-opacity-50"
       />
       <div className="flex gap-1 items-center">
         {query && <SearchResetButton />}

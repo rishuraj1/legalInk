@@ -22,18 +22,20 @@ import Placeholder from "@tiptap/extension-placeholder";
 import Blockquote from "@tiptap/extension-blockquote";
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
+import Image from "@tiptap/extension-image";
+import ImageResize from "tiptap-extension-resize-image";
 import Text from "@tiptap/extension-text";
 import Heading from "@tiptap/extension-heading";
 import FontFamily from "@tiptap/extension-font-family";
 import TextStyle from "@tiptap/extension-text-style";
 import CharacterCount from "@tiptap/extension-character-count";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { uploadArticleImageToS3 } from "@/actions/post";
 
 const RichTextEditor = ({
   value,
@@ -57,6 +59,11 @@ const RichTextEditor = ({
       Heading.configure({
         levels: [1, 2, 3],
       }),
+      Image.configure({
+        inline: true,
+        allowBase64: true,
+      }),
+      ImageResize,
       UnderlineExtension,
       Document,
       Paragraph,
@@ -76,13 +83,38 @@ const RichTextEditor = ({
       console.log("Updated content:", editor.getHTML());
       onChange(editor.getHTML());
     },
+    immediatelyRender: false,
   });
 
+  const handlePaste = async (event: React.ClipboardEvent<HTMLDivElement>) => {
+    const clipboardData = event.clipboardData;
+    if (!clipboardData) return;
+    const items = clipboardData.items;
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.type.startsWith("image")) {
+        console.log("Image found in clipboard");
+        const file = item.getAsFile();
+        if (file) {
+          const fileName = `${Date.now()}-${file.name}`;
+          try {
+            const s3Url = await uploadArticleImageToS3(file, fileName);
+            editor?.chain().focus().setImage({ src: s3Url }).run();
+          } catch (err) {
+            console.error("Failed to upload image:", err);
+          }
+          event.preventDefault();
+          return;
+        }
+      }
+    }
+  };
+
   return (
-    <>
+    <div onPaste={handlePaste}>
       <EditorContent editor={editor} className="editor" />
       {editor ? <RichTextEditorToolbar editor={editor} /> : null}
-    </>
+    </div>
   );
 };
 

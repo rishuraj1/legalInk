@@ -15,10 +15,14 @@ const commentSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    replies: [this], // Recursive reference for nested comments
+    replies: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
-export const Comment =
-  mongoose.models.Comment || mongoose.model("Comment", commentSchema);
+export const Comment = mongoose.models.Comment || mongoose.model("Comment", commentSchema);

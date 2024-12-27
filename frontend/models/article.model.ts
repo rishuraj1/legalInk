@@ -16,10 +16,12 @@ const articleSchema = new mongoose.Schema(
       required: true,
     },
     images: [String],
-    likes: {
-      type: Number,
-      default: 0,
-    },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     content: {
       type: String,
       required: true,
@@ -56,8 +58,11 @@ const articleSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    mainImage: {
+      type: String,
+    },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 export const Article =

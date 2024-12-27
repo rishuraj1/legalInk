@@ -35,7 +35,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const isValidPw = await comparePassword(
           password as string,
-          user.password,
+          user.password
         );
         if (!isValidPw) {
           throw new Error("Invalid password");
@@ -84,7 +84,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (Object.keys(updates).length > 0) {
               await User.updateOne(
                 { email: profile?.email as string },
-                updates,
+                updates
               );
             }
             user.id = String(existingUser._id);
@@ -107,7 +107,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token;
     },
-    async session({ session, token }) {
+    session: async ({ session, token }) => {
       if (token) {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
