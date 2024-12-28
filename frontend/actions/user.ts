@@ -37,7 +37,7 @@ const loginUser = async (email: string, password: string) => {
     });
   } catch (error) {
     const err = error as CredentialsSignin;
-    console.log(err);
+    console.log(err?.cause);
     return err.cause;
   }
 };
@@ -46,4 +46,23 @@ const googleLogin = async () => {
   await signIn("google");
 };
 
-export { registerUser, loginUser, googleLogin };
+const getUserDetails = async (userId: string) => {
+  try {
+    if (!userId) {
+      throw new Error("User ID is required");
+    }
+    await connectDb();
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    return user;
+  } catch (error) {
+    const err = error as Error;
+    return err.message;
+  }
+};
+
+export { registerUser, loginUser, googleLogin, getUserDetails };

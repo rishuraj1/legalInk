@@ -34,6 +34,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 233.3, 27.3%, 07%;
     --foreground: 0 0% 98%;
@@ -66,12 +67,33 @@ body {
   .search-form-btn {
     @apply rounded-full bg-transparent;
   }
+
+  blockquote {
+    @apply border-l-[4px] dark:border-[#E8E8EA] border-gray-300 bg-[#E8E8EA] p-2 my-2 italic text-foreground dark:bg-[#242535] rounded-lg;
+  }
+
+  .editor h1 {
+    @apply text-foreground font-bold text-2xl;
+  }
+
+  .editor h2 {
+    @apply text-foreground font-bold text-xl;
+  }
+
+  .editor p.is-editor-empty:first-child::before {
+    color: var(--gray-4);
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

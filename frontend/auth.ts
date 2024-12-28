@@ -35,7 +35,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const isValidPw = await comparePassword(
           password as string,
-          user.password,
+          user.password
         );
         if (!isValidPw) {
           throw new Error("Invalid password");
@@ -65,13 +65,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           const existingUser = await User.findOne({ email: profile?.email });
 
           if (!existingUser) {
-            await User.create({
+            // Create a new user
+            const newUser = await User.create({
               email: profile?.email as string,
               name: profile?.name as string,
               image: profile?.picture as string,
               providerId: user?.id as string,
             });
+            // Set token.id to the newly created user's _id
+            user.id = String(newUser._id);
           } else {
+            // Update existing user's data if needed
             const updates: Partial<typeof existingUser> = {};
             if (!existingUser.image) updates.image = profile?.picture as string;
             if (!existingUser.providerId)
@@ -80,9 +84,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (Object.keys(updates).length > 0) {
               await User.updateOne(
                 { email: profile?.email as string },
-                updates,
+                updates
               );
             }
+            user.id = String(existingUser._id);
           }
           return true;
         } catch (error) {
@@ -102,9 +107,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token;
     },
-    async session({ session, token }) {
+    session: async ({ session, token }) => {
       if (token) {
         session.user.id = token.id as string;
+        session.user.email = token.email as string;
       }
       return session;
     },

@@ -66,7 +66,7 @@ const workSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Project Sureshot",
+  title: "LegalInk",
   description: "For Lawyers",
 };
 
