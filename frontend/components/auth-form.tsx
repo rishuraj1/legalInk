@@ -12,64 +12,18 @@ import {
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
-import { googleLogin, loginUser, registerUser } from "@/actions/user";
+import { googleLogin } from "@/actions/user";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
 import Image from "next/image";
 
 const LoginForm = () => {
-  const handleLogin = async (formData: FormData): Promise<void> => {
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    if (!email || !password) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-
-    const toastId = toast.loading("Logging in...");
-    const error = await loginUser(email, password);
-    if (error) {
-      toast.error(String(error), { id: toastId });
-    } else {
-      toast.success("Logged in successfully", { id: toastId });
-      redirect("/");
-    }
-  };
   return (
     <Card>
       <CardHeader className="flex justify-center items-center">
         <CardTitle>Login</CardTitle>
-        <CardDescription>Login with your credentials.</CardDescription>
+        <CardDescription>Login</CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
-        <form action={handleLogin}>
-          <div className="space-y-1">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              name="email"
-              defaultValue=""
-              placeholder="doeJohn12@example.com"
-            />
-          </div>
-          <div className="space-y-1">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              name="password"
-              defaultValue=""
-              placeholder="***********"
-            />
-          </div>
-          <div className="mt-2">
-            <Button type="submit">Login</Button>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex items-center justify-center">
         <form action={googleLogin}>
           <Button type="submit" variant="ghost" className="mr-2">
             Continue with{" "}
@@ -81,7 +35,7 @@ const LoginForm = () => {
             />
           </Button>
         </form>
-      </CardFooter>
+      </CardContent>
     </Card>
   );
 };
