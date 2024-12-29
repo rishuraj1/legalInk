@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic"
 import { Article } from "@/types"
+import dynamic from "next/dynamic"
 
 const ArticleCard = dynamic(() => import("@/components/article-card"))
 

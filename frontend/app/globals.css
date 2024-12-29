@@ -68,6 +68,11 @@ body {
     @apply rounded-full bg-transparent;
   }
 
+  p:empty::before {
+    content: '';
+    display: inline-block;
+  }
+
   blockquote {
     @apply border-l-[4px] dark:border-[#E8E8EA] border-gray-300 bg-[#E8E8EA] p-2 my-2 italic text-foreground dark:bg-[#242535] rounded-lg;
   }

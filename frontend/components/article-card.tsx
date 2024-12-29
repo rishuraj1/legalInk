@@ -1,10 +1,10 @@
 import { Article } from "@/types"
 import Image from "next/image"
 
-import Link from "next/link"
 import { getArticleTime } from "@/lib/utils"
-import { Avatar, AvatarImage } from "./ui/avatar"
 import { EyeIcon } from "lucide-react"
+import Link from "next/link"
+import { Avatar, AvatarImage } from "./ui/avatar"
 
 interface ArticleCardProps {
     article: Article
@@ -22,12 +22,12 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
             <div className="w-full h-full max-w-[360px] max-h-[200px] gap-3 flex flex-col justify-between">
                 <div className="w-full text-justify flex flex-col gap-1">
                     <Link href={`/articles/${article?._id}`}>
-                        <h3 className="text-lg font-semibold text-zinc-300">{article?.title}</h3>
+                        <h3 className="text-lg font-semibold dark:text-zinc-300/80 dark:hover:text-zinc-300/100 text-zinc-800/90 hover:text-zinc-800/100 duration-300 ease-in-out">{article?.title}</h3>
                     </Link>
                 </div>
                 <div className="flex justify-between w-full items-end">
                     <Link href={`/user/${article?.author?._id}`} className="flex gap-1 items-end justify-end">
-                        <Avatar className="w-9 h-9">
+                        <Avatar className="w-8 h-8">
                             <AvatarImage src={article?.author?.image} alt={article?.author?.name} />
                         </Avatar>
                         <span className="font-light text-sm text-zinc-600">{article?.author?.name}</span>

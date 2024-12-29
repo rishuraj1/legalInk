@@ -1,13 +1,13 @@
 "use client";
 
-import RichTextEditor from "@/components/editor/rich-text-editor";
-import { Button } from "./ui/button";
-import { useEffect, useRef, useState } from "react";
-import { Input } from "./ui/input";
 import { createNewArticle } from "@/actions/post";
-import { toast } from "sonner";
-import { redirect } from "next/navigation";
+import RichTextEditor from "@/components/editor/rich-text-editor";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 export default function ArticleEditor({
   params,
@@ -56,6 +56,7 @@ export default function ArticleEditor({
     }
 
     const data = { title, subtitle, content, mainImage };
+    console.log("Data:", data);
     const toastId = toast.loading("Saving article...");
     const error = await createNewArticle(data);
     if (error) {
