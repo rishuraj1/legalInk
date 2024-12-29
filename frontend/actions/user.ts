@@ -7,7 +7,7 @@ import axios from "axios";
 // import { User } from "@/models/user.model";
 // import { CredentialsSignin } from "next-auth";
 
-const baseAPIUrl = process.env.NEXT_PUBLIC_API_URL;
+const baseAPIUrl = process.env.NEXT_PUBLIC_API_URL! || "http://localhost:5000";
 
 // const registerUser = async (email: string, password: string, name: string) => {
 //   console.log(email, password, name);
@@ -49,34 +49,55 @@ const googleLogin = async () => {
   await signIn("google");
 };
 
-// const getUserDetails = async (userId: string) => {
-//   try {
-//     if (!userId) {
-//       throw new Error("User ID is required");
-//     }
-//     await connectDb();
-//     const user = await User.findById(userId);
-
-//     if (!user) {
-//       throw new Error("User not found");
-//     }
-
-//     return user;
-//   } catch (error) {
-//     const err = error as Error;
-//     return err.message;
-//   }
-// };
-
-const loginFunction = async (profile: any) => {
-  try{
-    console.log(baseAPIUrl, "profile in loginFunction");
-    const user = await axios.post(`${baseAPIUrl}/api/v1/auth/login`, JSON.stringify(profile));
-    return user;
+const getUserDetails = async (userId: string) => {
+  try {
+    if (!userId) {
+      throw new Error("User ID is required");
+    }
+    const user = await axios.get(`${baseAPIUrl}/api/v1/users/${userId}`);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    return user?.data;
   } catch (error) {
-    console.error("Error in Google sign-in callback:", error);
-    throw new Error("Failed to sign in with Google");
+    const err = error as Error;
+    return err.message;
   }
-}
+};
 
-export { googleLogin, loginFunction };
+const loginFunction = async ({
+  profile,
+  providerId,
+}: {
+  profile: any;
+  providerId: string;
+}) => {
+  try {
+    console.log(baseAPIUrl, "profile in loginFunction");
+
+    const data = {
+      ...profile,
+      providerId,
+    };
+    const response = await axios.post(
+      `${baseAPIUrl}/api/v1/auth/login`,
+      JSON.stringify(data),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response, "response in loginFunction");
+    return response.data.user;
+  } catch (error: any) {
+    console.error("Error in Google sign-in callback:", error.message);
+    throw new Error(
+      `Failed to sign in with Google: ${
+        error.response?.data?.message || error.message
+      }`
+    );
+  }
+};
+
+export { googleLogin, loginFunction, getUserDetails };

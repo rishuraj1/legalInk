@@ -1,9 +1,9 @@
 import { getPostsByUserId } from "@/actions/post";
 import { auth } from "@/auth";
-import { ProfileHeader, UserPosts } from "./components";
+import { Article } from "@/types";
 import { User } from "next-auth";
 import { redirect } from "next/navigation";
-import { Article } from "@/types";
+import { ProfileHeader, UserPosts } from "./components";
 
 export default async function ProfilePage() {
     const user = (await auth())?.user

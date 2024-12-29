@@ -1,8 +1,8 @@
+import { auth } from "@/auth";
 import BrandLogo from "@/components/brand-logo";
+import Image from "next/image";
 import Link from "next/link";
 import { UserButton } from "./user-button";
-import { auth } from "@/auth";
-import Image from "next/image";
 
 const routes = [
   { name: "Home", href: "/" },

@@ -1,15 +1,15 @@
-import { Article } from "@/types";
-import { UserAvatar } from "./user-button";
-import Link from "next/link";
 import { getArticleTime } from "@/lib/utils";
-import Image from "next/image";
+import { Article } from "@/types";
 import { EyeIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { UserAvatar } from "./user-button";
 
 const ArticleContent = ({ article }: { article: Article }) => {
     console.log("Article:", article);
     return (
         <div className="flex flex-col gap-4 mx-20 mt-14">
-            <h1 className="text-4xl font-semibold font-sans">{article.title}</h1>
+            <h1 className="text-4xl font-semibold font-sans">{article?.title}</h1>
             <div className="flex items-center gap-2 dark:bg-zinc-900 bg-[#E8E8EA] bg-opacity-65 rounded-md">
                 {article?.mainImage && (
                     <Image

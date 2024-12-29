@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
-import { LoginForm, RegisterForm } from "@/components/auth-form";
+import { LoginForm } from "@/components/auth-form";
 import BrandLogo from "@/components/brand-logo";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { redirect } from "next/navigation";
 
 export default async function Auth() {
