@@ -9,9 +9,7 @@ export default async function CreatePostPage() {
   }
   return (
     <main className="px-4 py-4 flex-col flex gap-6 justify-around h-full">
-      <h1 className="font-semibold text-xl">
-        Create a new post
-      </h1>
+      <h1 className="font-semibold text-xl">Create a new post</h1>
       <ArticleEditor params={{ userId: session?.user?.id ?? "" }} />
     </main>
   );

@@ -1,16 +1,16 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import { v4 } from 'uuid';
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import { v4 } from "uuid";
 
-import connectDB from './utils/db.js';
+import connectDB from "./utils/db.js";
 const PORT = process.env.PORT || 5000;
 
-import userRoutes from "./routes/userRoutes.js"
-import authRoutes from "./routes/authRoutes.js"
-import postRoutes from "./routes/postRoutes.js"
-import uploadRoutes from "./routes/uploadRoutes.js"
+import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 dotenv.config();
 
@@ -23,12 +23,11 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/upload-to-s3", uploadRoutes);
 
-
 app.get("/", (req, res) => {
-    res.send("LegalInk API");
+  res.send("LegalInk API");
 });
 
 app.listen(PORT, async (req, res) => {
-    await connectDB();
-    console.log(`Server running on port ${PORT}`);
+  await connectDB();
+  console.log(`Server running on port ${PORT}`);
 });

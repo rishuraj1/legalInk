@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -6,7 +6,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "./ui/card";
 
 import { googleLogin } from "@/actions/user";
@@ -117,4 +117,3 @@ const LoginForm = () => {
 // };
 
 export { LoginForm };
-

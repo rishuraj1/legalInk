@@ -99,11 +99,15 @@ const createNewArticle = async ({
       userId,
     };
 
-    const response = await axios.post(`${baseAPIUrl}/api/v1/posts/create-post`, data, {
-      headers: {
-        "Content-Type": "application/json",
+    const response = await axios.post(
+      `${baseAPIUrl}/api/v1/posts/create-post`,
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
     console.log("Article saved successfully:", response.data);
     return null;
   } catch (error) {
@@ -119,7 +123,9 @@ const getPostsByUserId = async (userId: string) => {
       throw new Error("User ID is required");
     }
 
-    const posts = await axios.get(`${baseAPIUrl}/api/v1/users/${userId}/articles`);
+    const posts = await axios.get(
+      `${baseAPIUrl}/api/v1/users/${userId}/articles`,
+    );
     return posts.data;
   } catch (error) {
     const err = error as Error;
@@ -203,7 +209,7 @@ const increaseArticleViews = async (articleId: string) => {
 
 const uploadArticleImageToS3 = async (
   file: File,
-  fileName?: string
+  fileName?: string,
 ): Promise<string> => {
   try {
     console.log("Uploading image to S3...");
@@ -220,7 +226,7 @@ const uploadArticleImageToS3 = async (
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }
+      },
     );
     console.log("Image uploaded to S3:", response.data.s3Url);
     return response.data.s3Url;
@@ -233,10 +239,10 @@ const uploadArticleImageToS3 = async (
 export {
   createNewArticle,
   getPostsByUserId,
-    getArticleById,
+  getArticleById,
   //   getCommentsLikesByArticleId,
   //   getAllArticles,
-    increaseArticleViews,
+  increaseArticleViews,
   uploadArticleImageToS3,
   //   getAllPublishedArticles,
 };
