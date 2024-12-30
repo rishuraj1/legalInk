@@ -86,7 +86,7 @@ const loginFunction = async ({
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     console.log(response, "response in loginFunction");
     return response.data.user;
@@ -95,7 +95,7 @@ const loginFunction = async ({
     throw new Error(
       `Failed to sign in with Google: ${
         error.response?.data?.message || error.message
-      }`
+      }`,
     );
   }
 };

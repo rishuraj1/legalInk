@@ -1,6 +1,6 @@
-import express from 'express';
-import multer from 'multer';
-import { uploadToS3 } from '../controllers/uploadController.js';
+import express from "express";
+import multer from "multer";
+import { uploadToS3 } from "../controllers/uploadController.js";
 
 const upload = multer().single("file");
 

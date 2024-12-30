@@ -20,6 +20,7 @@ export default function ArticleEditor({
   const titleRef = useRef<HTMLInputElement>(null);
   const subtitleRef = useRef<HTMLInputElement>(null);
   const mainImageRef = useRef<HTMLInputElement>(null);
+  const bibliographyRef = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState("Initial content of the blog post");
   const [mainImage, setMainImage] = useState<File | null>(null);
   const [mainImagePreview, setMainImagePreview] = useState<string | null>(null);
@@ -40,7 +41,6 @@ export default function ArticleEditor({
     setMainImagePreview(null);
   }, [mainImage]);
 
-
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
@@ -49,6 +49,7 @@ export default function ArticleEditor({
     const title = titleRef.current?.value || "";
     const subtitle = subtitleRef.current?.value || "";
     const mainImage = mainImageRef.current?.files?.[0];
+    const bibliography = bibliographyRef.current?.value || "";
 
     if (!title || !subtitle || !content || content === "<p></p>") {
       toast.error("All fields are required");
@@ -70,18 +71,10 @@ export default function ArticleEditor({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <Input
-        ref={titleRef}
-        placeholder="Title"
-        className="mb-2"
-      />
+      <Input ref={titleRef} placeholder="Title" className="mb-2" />
 
       {/* Subtitle Input */}
-      <Input
-        ref={subtitleRef}
-        placeholder="Subtitle"
-        className="mb-4"
-      />
+      <Input ref={subtitleRef} placeholder="Subtitle" className="mb-4" />
 
       <Input
         ref={mainImageRef}
@@ -105,11 +98,22 @@ export default function ArticleEditor({
 
       {/* Rich Text Editor */}
       <RichTextEditor value={content} onChange={handleContentChange} />
+      <Input
+        ref={bibliographyRef}
+        placeholder="Bibliography"
+        className="mb-4"
+        title="bibliography"
+      />
 
       {/* Save Button */}
       <div className="flex justify-end">
         <Button
-          disabled={!content || !titleRef.current?.value || !subtitleRef.current?.value || loading}
+          disabled={
+            !content ||
+            !titleRef.current?.value ||
+            !subtitleRef.current?.value ||
+            loading
+          }
           type="submit"
           className="mt-4 bg-blue-700 hover:bg-blue-800 ease-in-out drop-shadow-md dark:text-white w-full min-[768px]:w-1/5"
         >

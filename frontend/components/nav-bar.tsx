@@ -8,7 +8,7 @@ const routes = [
   { name: "Home", href: "/" },
   { name: "Library", href: "/library" },
   { name: "Dictionary", href: "/dictionary" },
-  { name: "Network", href: "/network" },
+  // { name: "Network", href: "/network" },
   { name: "About", href: "/about" },
 ];
 
@@ -40,9 +40,7 @@ export default async function NavBar() {
       <div className="flex gap-2 items-center w-1/2 sm:w-1/3 justify-end">
         {user && (
           <Link href={`/create-post`}>
-            <button
-              className="font-semibold bg-gradient-to-tr from-blue-500 to-purple-900 rounded-full p-2 hover:from-blue-700 hover:to-purple-900 ease-in-out duration-200 group flex items-center justify-center gap-1 hover:rounded-md transition-all hover:w-full text-white"
-            >
+            <button className="font-semibold bg-gradient-to-tr from-blue-500 to-purple-900 rounded-full p-2 hover:from-blue-700 hover:to-purple-900 ease-in-out duration-200 group flex items-center justify-center gap-1 hover:rounded-md transition-all hover:w-full text-white">
               <Image
                 src={"/pen.svg"}
                 width={20}

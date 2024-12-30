@@ -42,4 +42,5 @@ export const getArticleTime = (date: string) => {
   return moment(date).fromNow();
 };
 
-export const isImageUrl = (url: string): boolean => /\.(jpeg|jpg|gif|png|webp|svg)$/i.test(url);
+export const isImageUrl = (url: string): boolean =>
+  /\.(jpeg|jpg|gif|png|webp|svg)$/i.test(url);

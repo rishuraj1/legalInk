@@ -20,13 +20,15 @@ export function UserAvatar({
   className?: string;
 }) {
   const name = initials
-  ? initials
-    .split(" ")
-    .map((name: string) => name[0])
-    .join("")
-  : ("UG" as string);
+    ? initials
+        .split(" ")
+        .map((name: string) => name[0])
+        .join("")
+    : ("UG" as string);
   return (
-    <Avatar className={`${size === "icon" && "w-10 h-10"} ${className} ${size === "medium" && "w-16 h-16"} ${size === "large" && "w-20 h-20"}`}>
+    <Avatar
+      className={`${size === "icon" && "w-10 h-10"} ${className} ${size === "medium" && "w-16 h-16"} ${size === "large" && "w-20 h-20"}`}
+    >
       <AvatarImage src={src} alt="User" />
       <AvatarFallback>{name}</AvatarFallback>
     </Avatar>
@@ -38,9 +40,9 @@ export async function UserButton() {
   const user = session?.user;
   const initials = user?.name
     ? user?.name
-      .split(" ")
-      .map((name: string) => name[0])
-      .join("")
+        .split(" ")
+        .map((name: string) => name[0])
+        .join("")
     : ("G" as string);
   console.log(user, "user");
   return (
