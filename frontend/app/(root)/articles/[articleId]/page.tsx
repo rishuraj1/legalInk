@@ -1,5 +1,6 @@
 import { getArticleById, increaseArticleViews } from "@/actions/post";
 import ArticleContent from "@/components/article-content";
+import ScrollTriggeredDrawer from "@/components/scroll-trigger-drawer";
 import { redirect } from "next/navigation";
 
 export default async function ArticlePage({
@@ -20,6 +21,7 @@ export default async function ArticlePage({
   if (!article) return redirect("/not-found");
   return (
     <div className="px-4 py-4 flex-col flex gap-6 justify-around items-center h-full">
+      <ScrollTriggeredDrawer />
       <ArticleContent article={article} />
       {/* <ArticleComments articleId={articleId} /> */}
     </div>

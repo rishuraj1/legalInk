@@ -1,6 +1,5 @@
 import { getArticleTime } from "@/lib/utils";
 import { Article } from "@/types";
-import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { UserAvatar } from "./user-button";
@@ -41,10 +40,6 @@ const ArticleContent = ({ article }: { article: Article }) => {
               {getArticleTime(article?.createdAt)}
             </span>
           )}
-          <span className="text-sm text-zinc-700 dark:text-zinc-500 flex items-center gap-1">
-            <EyeIcon className="h-4 w-4" />
-            {article?.views}
-          </span>
         </div>
       </div>
       <h2 className="text-lg font-semibold">{article.subtitle}</h2>
