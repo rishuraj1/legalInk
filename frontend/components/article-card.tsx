@@ -13,7 +13,7 @@ interface ArticleCardProps {
 const ArticleCard = ({ article }: ArticleCardProps) => {
   console.log("article", article);
   return (
-    <div className="flex flex-col gap-2 justify-between p-2 items-center w-full max-w-[392px] max-h-[488px] h-full border dark:border-zinc-800 border-zinc-800/20 rounded-md shadow-sm">
+    <div className="flex flex-col gap-2 justify-between p-2 items-center max-w-full md:w-[392px] md:max-h-[488px] h-full border dark:border-zinc-800 border-zinc-800/20 rounded-md shadow-sm">
       {/* <div className="flex items-center justify-center w-full h-1/2 border rounded-md dark:bg-zinc-300/10 bg-zinc-300/90"> */}
       {article?.mainImage && (
         <Image

@@ -1,23 +1,26 @@
-import Form from "next/form";
-
 export default function HeroSection() {
   return (
     <section
-      className="py-16 px-6 w-full h-72 rounded-md"
+      className="py-36 px-6 w-full h-72 rounded-md md:h-96"
       style={{
-        backgroundImage:
-          "url(https://www.jherbin.com/assets/images/banner_fountainpeninks.jpg)",
+        backgroundImage: "url('/assets/Images/heroImage.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "100%",
+        width: "100%",
       }}
     >
       {/* TODO: picture for background */}
       <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <h1 className="text-4xl  -translate-y-[78%] md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-200 to-zinc-300">
           Welcome to <span>LegalInk</span>
         </h1>
-        <p className="text-lg md:text-xl rounded-md text-black font-semibold fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          Provides you the space to ink your sayings and thoughts.
+        <p
+          className={`text-gradient-to-r tracking-wide md:text-xl rounded-md from-gray-100 via-gray-200 to-zinc-300 font-semibold transform translate-x-[20%] -translate-y-10 whitespace-nowrap px-4`}
+          style={{ wordSpacing: "0.2rem", fontFamily: "Caveat", fontSize: "1.5rem" }}
+        >
+          Provides you the space to ink your sayings and thoughts...
         </p>
         {/* <form className="flex flex-col md:flex-row gap-4 justify-center items-center">
                     <input

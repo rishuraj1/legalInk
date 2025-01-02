@@ -51,7 +51,4 @@ export interface Dictionary {
   _id: string;
   word: string;
   meaning: string;
-  example: string;
-  contributedBy: User;
-  status: "approved" | "pending" | "rejected";
 }

@@ -61,8 +61,13 @@ const articleSchema = new mongoose.Schema(
     mainImage: {
       type: String,
     },
+    // bibliography: [
+    //   {
+    //     type: String,
+    //   },
+    // ],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 export const Article =

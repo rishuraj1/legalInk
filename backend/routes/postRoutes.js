@@ -2,6 +2,7 @@ import express from "express";
 import {
   createNewArticle,
   getArticleByArticleId,
+  getDictionary,
   getPostsByUserId,
   incrementArticleViews,
 } from "../controllers/postController.js";

@@ -10,17 +10,6 @@ const dictionarySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    example: String,
-    contributedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    status: {
-      type: String,
-      default: "pending",
-      enum: ["approved", "pending", "rejected"],
-    },
   },
   { timestamps: true },
 );

@@ -9,7 +9,8 @@ const routes = [
   { name: "Library", href: "/library" },
   { name: "Dictionary", href: "/dictionary" },
   // { name: "Network", href: "/network" },
-  { name: "About", href: "/about" },
+  { name: "Contact Us", href: "/contact-us" },
+  { name: "About Us", href: "/about-us" },
 ];
 
 export default async function NavBar() {

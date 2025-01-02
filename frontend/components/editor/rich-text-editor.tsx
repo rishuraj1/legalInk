@@ -112,8 +112,8 @@ const RichTextEditor = ({
 
   return (
     <div onPaste={handlePaste}>
-      <EditorContent editor={editor} className="editor" />
       {editor ? <RichTextEditorToolbar editor={editor} /> : null}
+      <EditorContent editor={editor} className="editor" />
     </div>
   );
 };

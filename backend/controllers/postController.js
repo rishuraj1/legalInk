@@ -1,4 +1,5 @@
 import { Article } from "../models/article.model.js";
+import { Dictionary } from "../models/dictionary.model.js";
 
 const getPostsByUserId = async (req, res) => {
   try {
@@ -67,9 +68,19 @@ const incrementArticleViews = async (req, res) => {
   }
 };
 
+const getDictionary = async (req, res) => {
+  try{
+    const dictionary = await Dictionary.find();
+    res.status(200).json(dictionary);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 export {
   getPostsByUserId,
   createNewArticle,
   getArticleByArticleId,
   incrementArticleViews,
+  getDictionary
 };
