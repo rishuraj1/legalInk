@@ -7,8 +7,7 @@ import {
   Facebook,
   Instagram,
   LetterText,
-  Library,
-  Twitter,
+  Library
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import TypedText from "./components/typewriter";
@@ -76,7 +75,7 @@ export default function Home() {
             />
             <TypedText
               text={"Launching Soon!"}
-              className="text-5xl mt-3 font-semibold text-white text-center"
+              className="text-5xl tracking-wider mt-3 font-semibold text-white text-center"
               delay={1000}
             />
           </motion.div>
@@ -105,15 +104,25 @@ export default function Home() {
         >
           About
         </motion.h3>
-        <motion.p
-          className="text-lg text-center mt-2 p-3"
+        <motion.blockquote
+          className="text-lg text-center mt-2 p-7 text-zinc-300 italic font-thin"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          LegalInk is a platform for lawyers to manage their clients and cases.
-        </motion.p>
+          &quot;LegitInk is a unique platform for sharing, simplifying and accessing legal knowledge, open to everyone—from curious minds to seasoned professionals. We welcome articles, blogs, and insights and that often get overlooked elsewhere, giving every voice a chance to be heard. Our mission is to make legal knowledge accessible to all.&quot;
+        </motion.blockquote>
+
+        <motion.span
+          className="text-lg text-center mt-2 font-semibold"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          - Avantika Layak, Founder, LegitInk
+        </motion.span>
 
         {/* Animated Feature Cards in About Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-10 p-10">
@@ -163,7 +172,7 @@ export default function Home() {
         <div className="flex flex-col items-start">
           <span className="text-3xl text-black font-bold">Contact Us</span>
           <span className="text-lg text-zinc-800 font-semibold">
-            thelegalink@gmail.com
+            contactlegitink@gmail.com
           </span>
         </div>
         <motion.div
@@ -171,10 +180,9 @@ export default function Home() {
           variants={fadeInRight}
         >
           <span className="text-3xl text-black font-bold">Follow us:</span>
-          <div className="flex items-center justify-between w-full">
-            <Facebook className="w-5 h-5 cursor-pointer" />
-            <Instagram className="w-5 h-5 cursor-pointer" />
-            <Twitter className="w-5 h-5 cursor-pointer" />
+          <div className="flex items-center justify-start gap-6 w-full">
+            <Facebook className="w-5 h-5 cursor-pointer hover:text-[#316FF6] ease-in-out duration-300" />
+            <Instagram className="w-5 h-5 cursor-pointer hover:text-zinc-700 ease-in-out duration-300" />
           </div>
         </motion.div>
       </motion.div>
