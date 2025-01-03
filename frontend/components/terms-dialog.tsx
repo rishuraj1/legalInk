@@ -9,7 +9,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-export function TermsDialog({ title, disabled }: { title: string, disabled: boolean }) {
+export function TermsDialog({ title, disabled, onAgree }: { title: string, disabled: boolean, onAgree: () => void }) {
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -23,7 +23,7 @@ export function TermsDialog({ title, disabled }: { title: string, disabled: bool
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <Button type="submit">Agree</Button>
+                    <Button type="button" onClick={onAgree}>Agree</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

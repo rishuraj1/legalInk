@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { createNewArticle } from "@/actions/post";
-import RichTextEditor from "@/components/editor/rich-text-editor";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 import { Input } from "./ui/input";
+import RichTextEditor from "./editor/rich-text-editor";
 import { TermsDialog } from "./terms-dialog";
+import { createNewArticle } from "@/actions/post";
 
 export default function ArticleEditor({
   params,
@@ -42,9 +42,8 @@ export default function ArticleEditor({
   }, [mainImage]);
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async () => {
     setLoading(true);
-    e.preventDefault();
 
     const title = titleRef.current?.value || "";
     const subtitle = subtitleRef.current?.value || "";
@@ -69,12 +68,10 @@ export default function ArticleEditor({
     setLoading(false);
   };
 
-  // TODO: author's curr info
-
   const disabled = !content || !titleRef.current?.value || !subtitleRef.current?.value || loading;
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form className="flex flex-col gap-4">
       <Input ref={titleRef} placeholder="Title" className="mb-2" />
 
       {/* Subtitle Input */}
@@ -107,20 +104,9 @@ export default function ArticleEditor({
         className="mb-4"
         title="bibliography"
       />
-      {/* <Button
-          disabled={
-            !content ||
-            !titleRef.current?.value ||
-            !subtitleRef.current?.value ||
-            loading
-          }
-          type="submit"
-          className="mt-4 bg-blue-700 hover:bg-blue-800 ease-in-out drop-shadow-md dark:text-white w-full min-[768px]:w-1/5"
-        >
-          Submit
-        </Button> */}
+
       <div className="flex justify-end">
-        <TermsDialog title="Submit" disabled={disabled} />
+        <TermsDialog title="Submit" disabled={disabled} onAgree={handleSubmit} />
       </div>
     </form>
   );
