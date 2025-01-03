@@ -107,7 +107,7 @@ export default function Home() {
         <motion.blockquote
           className="text-lg text-center mt-2 p-7 text-zinc-300 italic font-thin"
           initial="hidden"
-          whileInView="visible"
+          whileInView="visible" 
           viewport={{ once: true }}
           variants={fadeInUp}
         >
