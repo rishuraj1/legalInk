@@ -6,10 +6,6 @@ const getDictionary = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const search = req.query.search || "";
 
-    console.log("page", page);
-    console.log("limit", limit);
-    console.log("search", search);
-
     const startIndex = (page - 1) * limit;
 
     const searchFilter = search

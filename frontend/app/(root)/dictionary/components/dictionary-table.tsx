@@ -11,8 +11,10 @@ import {
 } from "@/components/ui/table"
 
 
-const DictionaryTable = ({ data }: {
+const DictionaryTable = ({ data, currPage, itemsPerPage }: {
     data: Dictionary[];
+    currPage: number;
+    itemsPerPage: number;
 }) => {
 
     return (
@@ -22,15 +24,17 @@ const DictionaryTable = ({ data }: {
                 This is a work in progress and it is available for public domain, LegalInk is not liable for any misinterpretations or sources referred for the meaning of these vocabs and legal words or its explanation.</TableCaption>
             <TableHeader>
                 <TableRow>
+                    <TableHead className="text-left">Sl. No.</TableHead>
                     <TableHead className="">Word</TableHead>
                     <TableHead className="text-right">Meaning</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data?.map((word) => (
+                {data?.map((word, index) => (
                     <TableRow key={word._id} className="w-full h-full p-3">
-                        <TableCell className="p-3">{word.word}</TableCell>
-                        <TableCell className="text-right py-5">{word.meaning}</TableCell>
+                        <TableCell className="text-left py-8 px-10">{index + (currPage - 1) * itemsPerPage + 1}</TableCell>
+                        <TableCell className="py-8 px-10">{word.word}</TableCell>
+                        <TableCell className="text-right py-8 px-10">{word.meaning}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>

@@ -43,7 +43,7 @@ export default async function DictionaryPage({
       </div>
 
       {dictionary && dictionary.length > 0 ? (
-        <DictionaryTable data={dictionary} />
+        <DictionaryTable data={dictionary} currPage={page} itemsPerPage={limit} />
       ) : (
         <h2 className="text-lg text-gray-500">No results found</h2>
       )}
